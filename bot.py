@@ -1,11 +1,12 @@
 import logging
+import os
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
 
 # ══════════════════════════════════════════════
 # НАСТРОЙКИ
 # ══════════════════════════════════════════════
-BOT_TOKEN = "8849711401:AAEXVo84AcsbrjuplNquy0RUqh3u124v89Q"
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8849711401:AAEXVo84AcsbrjuplNquy0RUqh3u124v89Q")
 ADMIN_ID = 342698056
 
 # ══════════════════════════════════════════════
@@ -37,10 +38,10 @@ _Откройте Врата к Невидимым Силам_
 ⚡ Влиять на физические объекты
 
 ✨ *Результаты после курса:*
-• Гармонизация жизни
-• Снятие энергетических блоков
-• Расширение восприятия
-• Личностный рост
+- Гармонизация жизни
+- Снятие энергетических блоков
+- Расширение восприятия
+- Личностный рост
 
 📍 *Формат:*
 🔹 2 дня офлайн-интенсив
@@ -209,7 +210,7 @@ def main():
     app.add_handler(CallbackQueryHandler(button_handler))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     print("✅ Бот запущен!")
-    app.run_polling()
+    app.run_polling(drop_pending_updates=True)
 
 if __name__ == "__main__":
     main()
